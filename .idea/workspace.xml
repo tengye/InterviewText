@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0f9e922-6b0a-4320-a0fa-a32bdf2e2be8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/observer-UML.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/Client.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/Observer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/StudentObserver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/Subject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/designPatterns/observer/TeacherSubject.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Interview.iws" />
@@ -952,7 +945,7 @@
       <workItem from="1518510303768" duration="1746000" />
       <workItem from="1519627331185" duration="5743000" />
       <workItem from="1519695578264" duration="388000" />
-      <workItem from="1519709706840" duration="8382000" />
+      <workItem from="1519709706840" duration="8406000" />
     </task>
     <task id="LOCAL-00001" summary="排序，链表，二叉树">
       <created>1510995835138</created>
@@ -972,11 +965,17 @@
       <option name="project" value="LOCAL" />
       <updated>1519714764649</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="观察者模式">
+      <created>1519724940464</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1519724940464</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174027000" />
+    <option name="totallyTimeSpent" value="174051000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1032,7 +1031,8 @@
     <MESSAGE value="排序，链表，二叉树" />
     <MESSAGE value="数据结构，排序算法" />
     <MESSAGE value="代理模式" />
-    <option name="LAST_COMMIT_MESSAGE" value="代理模式" />
+    <MESSAGE value="观察者模式" />
+    <option name="LAST_COMMIT_MESSAGE" value="观察者模式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
