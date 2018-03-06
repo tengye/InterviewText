@@ -33,7 +33,11 @@ public class Apple implements Serializable{
 //        for (Map.Entry<Stu, String> s : map.entrySet()) {
 //            System.out.println(s.getKey()+" ------ "+ s.getValue());
 //        }
-        System.out.println( foo(8)+"===");
+
+        Integer n = new Integer(99);
+        Integer m = 1000;
+        Integer k = 99;
+        System.out.println( n==k);
 
     }
 

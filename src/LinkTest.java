@@ -5,21 +5,24 @@ import java.util.Stack;
  */
 public class LinkTest {
 
+    private static Note note1;
+    private static Note note2;
+
     public static void main(String[] args) {
         LinkTest linkTest = new LinkTest();
         Note head = linkTest.init();
-        Note note = linkTest.resvert(head);
+        Note note = linkTest.deleteNote(head, 2);
 
         System.out.println(note.data+"----");
     }
 
     public Note init(){
         Note head = new Note();
-        head.data = 0;
-        Note note1 = new Note();
+        head.data = 2;
+        note1 = new Note();
         note1.data = 1;
         head.next = note1;
-        Note note2 = new Note();
+        note2 = new Note();
         note2.data = 2;
         note1.next = note2;
         return head;
@@ -33,11 +36,14 @@ public class LinkTest {
         }
         // 如果要删除的是尾结点
         if (note.next == null){
+            Note temp = new Note();
+            temp.data = header.data;
             while (header.next != note){
                 // 找到要删除节点的上一个节点
+                temp.next = header.next;
                 header = header.next;
             }
-            header.next = null;
+            return temp;
         }
         // 如果要删除的是头节点
         else if (note == header){
@@ -86,12 +92,12 @@ public class LinkTest {
     //TODO 删除指定数值的节点
     public Note deleteNote(Note head, int number){
         // 如果前面几个节点都是要删除的，找到第一个不用删除的节点
-        while (head != null){
-            if (head.data != number){
-                break;
-            }
-            head = head.next;
-        }
+//        while (head != null){
+//            if (head.data != number){
+//                break;
+//            }
+//            head = head.next;
+//        }
 
         Note pre = head;
         Note cur = head;
@@ -165,8 +171,13 @@ public class LinkTest {
                 }
             }
 
-                return stack2.pop();
+            return stack2.pop();
         }
+    }
+
+    interface Abc{
+        abstract void c();
+        abstract void d();
     }
 
     private Note re(Note header){
