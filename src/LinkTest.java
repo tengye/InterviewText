@@ -1,3 +1,6 @@
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 /**
@@ -11,19 +14,34 @@ public class LinkTest {
     public static void main(String[] args) {
         LinkTest linkTest = new LinkTest();
         Note head = linkTest.init();
-        Note note = linkTest.deleteNote(head, 2);
+        Note head1 = linkTest.init1();
+
+        Note[] notes = {head, head1};
+        Note note = linkTest.mergeLists(notes);
 
         System.out.println(note.data+"----");
     }
 
     public Note init(){
         Note head = new Note();
-        head.data = 2;
+        head.data = 1;
         note1 = new Note();
-        note1.data = 1;
+        note1.data = 2;
         head.next = note1;
         note2 = new Note();
-        note2.data = 2;
+        note2.data = 3;
+        note1.next = note2;
+        return head;
+    }
+
+    public Note init1(){
+        Note head = new Note();
+        head.data = 2;
+        note1 = new Note();
+        note1.data = 4;
+        head.next = note1;
+        note2 = new Note();
+        note2.data = 6;
         note1.next = note2;
         return head;
     }
@@ -91,13 +109,13 @@ public class LinkTest {
     }
     //TODO 删除指定数值的节点
     public Note deleteNote(Note head, int number){
-        // 如果前面几个节点都是要删除的，找到第一个不用删除的节点
-//        while (head != null){
-//            if (head.data != number){
-//                break;
-//            }
-//            head = head.next;
-//        }
+//         如果前面几个节点都是要删除的，找到第一个不用删除的节点
+        while (head != null){
+            if (head.data != number){
+                break;
+            }
+            head = head.next;
+        }
 
         Note pre = head;
         Note cur = head;
@@ -135,6 +153,14 @@ public class LinkTest {
     }
 
     class Note{
+
+        public Note() {
+        }
+
+        public Note(int data) {
+            this.data = data;
+        }
+
         Note next;
         int data;
 
@@ -175,11 +201,6 @@ public class LinkTest {
         }
     }
 
-    interface Abc{
-        abstract void c();
-        abstract void d();
-    }
-
     private Note re(Note header){
         Note pre = null;
         while (header != null){
@@ -190,6 +211,54 @@ public class LinkTest {
         }
         return pre;
     }
+
+    // 合并k个有序链表
+    public Note mergeLists(Note[] nodeList){
+        if (nodeList == null || nodeList.length == 0){
+            return null;
+        }
+        // PriorityQueue中的元素在逻辑上构成了一棵完全二叉树，但是在实际存储时转换为了数组保存在内存中，
+        // 而我们的PriorityQueue继承了接口Queue，表名这是一个队列，
+        // 只是它不像普通队列（例如：LinkedList）在遍历输出的时候简单的按顺序从头到尾输出，
+        // PriorityQueue总是先输出根节点的值，然后调整树使之继续成为一棵完全二叉树
+        // 这样每次输出的根节点总是整棵树优先级最高的，要么数值最小要么数值最大。
+        // 大根堆和小根堆
+        PriorityQueue<Note> min = new PriorityQueue<>(1, new Comparator<Note>() {
+            @Override
+            public int compare(Note o1, Note o2) {
+                return o1.data - o2.data;
+            }
+        });
+
+
+        for (Note note : nodeList){
+            if (note != null){
+                min.add(note);
+            }
+        }
+
+        Note header = new Note();
+        Note cur = header;
+
+        while (!min.isEmpty()){
+            // poll() 方法用于检索并移除此队列的头，则返回null，如果此队列为空。
+            Note temp = min.poll();
+
+            cur.next = temp;
+            cur = cur.next;
+            System.out.print(header);
+            if (temp.next != null){
+                min.offer(temp.next);
+            }
+        }
+
+        cur.next = null;
+
+        return header.next;
+    }
+
+    // 判断链表是否成环以及环的长度
+
 
 
 }
