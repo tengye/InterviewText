@@ -58,7 +58,7 @@ public class Leetcode {
         public void push(int a){
             stack.push(a);
             if (minStack.empty() || minStack.peek() <= a){
-                minStack.push(a);
+                minStack. push(a);
             }
         }
 

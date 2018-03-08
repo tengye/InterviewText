@@ -1,3 +1,5 @@
+import com.sun.tools.corba.se.idl.constExpr.Not;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -17,9 +19,9 @@ public class LinkTest {
         Note head1 = linkTest.init1();
 
         Note[] notes = {head, head1};
-        Note note = linkTest.mergeLists(notes);
+        Note note = linkTest.resvertNodeDigui(head);
 
-        System.out.println(note.data+"----");
+        System.out.println(newHeader.data+"----");
     }
 
     public Note init(){
@@ -44,6 +46,15 @@ public class LinkTest {
         note2.data = 6;
         note1.next = note2;
         return head;
+    }
+
+    // 删除指定节点O(1)
+    // 如果是在O(1)的时间复杂度，要是删除尾节点的话做不到
+    public void deleteNoteO1(Note note){
+        if (note.next !=null){
+            note.data = note.next.data;
+            note.next = note.next.next;
+        }
     }
 
 
@@ -132,6 +143,72 @@ public class LinkTest {
 
         return head;
     }
+
+    private static Note newHeader;
+    // 递归的链表反转
+    public Note resvertNodeDigui(Note head){
+
+        if (head == null || head.next == null){
+            newHeader = head;
+            return head;
+        }
+
+        Note trail = resvertNodeDigui(head.next);
+        trail.next = head;
+        head.next = null;
+
+        return head;
+
+    }
+
+
+    Note slowNode, twoNode;
+    int visitCount;
+    int firstVisitStep, secondVisitStep;
+    int stepCount;
+    // 判断链表是否成环，并返回环的大小
+    public int linkCircleNumber(Note header){
+        slowNode = header;
+        twoNode = header;
+
+        while (visitCount < 2) {
+            if (!goOneStep() || !goTwoStep()) {
+                // 没有成环
+                break;
+            }
+
+            stepCount++;
+            if (slowNode == twoNode){
+                // 相遇
+                visitCount++;
+                if (visitCount == 1){
+                    firstVisitStep = stepCount;
+                } else if (visitCount == 2){
+                    secondVisitStep = stepCount;
+                }
+            }
+        }
+
+        return secondVisitStep - firstVisitStep;
+    }
+
+    public boolean goOneStep(){
+        if (slowNode == null || slowNode.next == null){
+            return false;
+        }
+        slowNode = slowNode.next;
+        return true;
+    }
+
+    public boolean goTwoStep(){
+        if (twoNode == null || twoNode.next == null || twoNode.next.next == null){
+            return false;
+        }
+        twoNode = twoNode.next.next;
+        return true;
+    }
+
+
 
     // 链表反转
     public Note resvert(Note head){
